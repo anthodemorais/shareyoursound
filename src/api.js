@@ -1,6 +1,7 @@
 export default {
   baseUrl: 'https://api.shareyoursound.loscil.fr/api',
   headers: { 'Content-Type': 'application/json' },
+  headersLogged: this.headers + { Authorization: `Bearer ${localStorage.getItem('token')}` },
   login(email, password, completion) {
     const body = { username: email, password };
     fetch(`${this.baseUrl}/login_check`, {
