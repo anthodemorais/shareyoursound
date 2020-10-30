@@ -1,6 +1,6 @@
 const baseUrl = 'https://api.shareyoursound.loscil.fr/api';
 const headers = { 'Content-Type': 'application/json' };
-const headersLogged = headers + { Authorization: `Bearer ${localStorage.getItem('token')}` };
+const headersLogged = { 'Content-Type': 'application/json', Authentication: `Bearer ${localStorage.getItem('token')}` };
 
 const api = {
   login(email, password, completion) {

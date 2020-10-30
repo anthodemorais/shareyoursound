@@ -18,15 +18,15 @@ function useMyProfileBlock() {
 
   api.getRequest('/user', (data) => {
     if (data !== 'error') {
-      firstname.value = data.user.firstname
-      lastname.value = data.user.lastname
-      email.value = data.user.email
-      picture.value = data.user.picture
+      firstname.value = data.user.firstname;
+      lastname.value = data.user.lastname;
+      email.value = data.user.email;
+      picture.value = data.user.picture;
     }
-  })
+  });
 
   return {
-    firstname, lastname, email, picture
+    firstname, lastname, email, picture,
   };
 }
 export default {
