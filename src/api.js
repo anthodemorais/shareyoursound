@@ -1,12 +1,12 @@
-export default {
-  baseUrl: 'https://api.shareyoursound.loscil.fr/api',
-  headers: { 'Content-Type': 'application/json' },
-  headersLogged: this.headers + { Authorization: `Bearer ${localStorage.getItem('token')}` },
+const baseUrl = 'https://api.shareyoursound.loscil.fr/api';
+const headers = { 'Content-Type': 'application/json' };
+const headersLogged = headers + { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
+const api = {
   login(email, password, completion) {
     const body = { username: email, password };
-    fetch(`${this.baseUrl}/login_check`, {
-      method: 'POST', headers: this.headers, body,
+    fetch(`${baseUrl}/login_check`, {
+      method: 'POST', headers, body,
     }).then((res) => {
       res.json().then((data) => {
         localStorage.setItem('token', data.token);
@@ -21,8 +21,8 @@ export default {
     const body = {
       email, password, firstname, lastname,
     };
-    fetch(`${this.baseUrl}/register`, {
-      method: 'POST', headers: this.headers, body,
+    fetch(`${baseUrl}/register`, {
+      method: 'POST', headers, body,
     }).then(() => {
       this.login(email, password, () => {
         completion();
@@ -33,8 +33,8 @@ export default {
   },
 
   getRequest(url, completion) {
-    fetch(`${this.baseUrl}${url}`, {
-      headers: this.headersLogged,
+    fetch(`${baseUrl}${url}`, {
+      headers: headersLogged,
     }).then((res) => {
       res.json().then((data) => {
         completion(data);
@@ -46,8 +46,8 @@ export default {
   },
 
   postOrPutRequest(method, url, body, completion) {
-    fetch(`${this.baseUrl}${url}`, {
-      method, headers: this.headersLogged, body,
+    fetch(`${baseUrl}${url}`, {
+      method, headers: headersLogged, body,
     }).then(() => {
       completion();
     }).catch((error) => {
@@ -57,8 +57,8 @@ export default {
   },
 
   deleteRequest(url, completion) {
-    fetch(`${this.baseUrl}${url}`, {
-      method: 'DELETE', headers: this.headersLogged,
+    fetch(`${baseUrl}${url}`, {
+      method: 'DELETE', headers: headersLogged,
     }).then(() => {
       completion();
     }).catch((error) => {
@@ -68,3 +68,5 @@ export default {
   },
 
 };
+
+export default api;

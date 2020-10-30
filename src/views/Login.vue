@@ -1,8 +1,8 @@
 <template>
     <h2>Login</h2>
     <form @submit='onSubmit'>
-        <input type='email' placeholder='Email' required @change='updateEmail' />
-        <input type='password' placeholder='Password' required @change='updatePassword' />
+        <input type='email' placeholder='Email' required v-model='email' />
+        <input type='password' placeholder='Password' required v-model='password' />
         <input type='submit' />
     </form>
 </template>
