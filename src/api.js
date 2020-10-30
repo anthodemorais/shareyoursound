@@ -32,4 +32,17 @@ export default {
     });
   },
 
+  getMe() {
+    fetch(`${this.baseUrl}/api/type`, {
+      headers: this.headers,
+    }).then((res) => {
+      res.json().then((response) => {
+        this.posts = response;
+        console.log(response);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+  },
+
 };
