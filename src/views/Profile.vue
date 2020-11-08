@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-	</div>
+  </div>
 </template>
 
 <script>
@@ -18,11 +18,25 @@ import api from '../api';
 
 function getMe() {
   const firstname = ref('');
+  const firstname = ref('');
   const lastname = ref('');
   const email = ref('');
   const picture = ref('');
 
-  
+  api.getRequest('/user', (data) => {
+    if (localStorage.getItem('token') === undefined) {
+      this.getAccessToken();
+    }
+
+    console.log(localStorage.getItem('token'));
+    if (data !== 'error') {
+      id.value = data.user.id;
+      firstname.value = data.user.firstname;
+      lastname.value = data.user.lastname;
+      email.value = data.user.email;
+      picture.value = data.user.picture;
+    }
+  });
 
   return {
     firstname, lastname, email, picture
