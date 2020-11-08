@@ -38,6 +38,7 @@ const api = {
     }).then((res) => {
       res.json().then((data) => {
         completion(data);
+        console.log(data);
       });
     }).catch((error) => {
       console.log(error.message);

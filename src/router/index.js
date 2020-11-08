@@ -23,9 +23,14 @@ const routes = [
     component: () => import('../views/Register.vue'),
   },
   {
-    path: '/profile',
+    path: '/profil',
     name: 'Profile',
-    component: () => import('../views/MyProfile.vue'),
+    component: () => import('../views/MyProfil.vue'),
+  },
+  {
+    path: '/profil/:id(\\d+)',
+    name: 'ProfileId',
+    component: () => import('../views/ProfilId.vue'),
   },
 ];
 
