@@ -17,7 +17,7 @@ import { ref } from 'vue';
 import api from '../api';
 
 function getMe() {
-  const firstname = ref('');
+  const id = ref('');
   const firstname = ref('');
   const lastname = ref('');
   const email = ref('');
@@ -39,7 +39,7 @@ function getMe() {
   });
 
   return {
-    firstname, lastname, email, picture
+    id, firstname, lastname, email, picture,
   };
 }
 export default {
