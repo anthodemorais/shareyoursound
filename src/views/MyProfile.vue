@@ -3,10 +3,16 @@
     <h2>{{ firstname }} {{ lastname }}</h2>
     <strong>{{ email }}</strong>
     <img src="{{ picture }}" alt="{{ firstname }} {{ lastname }}" />
+    <UpdateProfile
+      firstname="{{ firstname }}"
+      lastname="{{ lastname }}"
+      email="{{ email }}"
+      password="{{ password }}" />
   </div>
 </template>
 
 <script>
+// import UpdateProfile from '@/components/UpdateProfile.vue';
 import { ref } from 'vue';
 import api from '../api';
 

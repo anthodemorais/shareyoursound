@@ -1,12 +1,14 @@
 const baseUrl = 'https://api.shareyoursound.loscil.fr/api';
-const headers = { 'Content-Type': 'application/json' };
-const headersLogged = { 'Content-Type': 'application/json', Authentication: `Bearer ${localStorage.getItem('token')}` };
 
 const api = {
   login(email, password, completion) {
     const body = { username: email, password };
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': JSON.stringify(body).length.toString(),
+    };
     fetch(`${baseUrl}/login_check`, {
-      method: 'POST', headers, body,
+      method: 'POST', headers, body: JSON.stringify(body),
     }).then((res) => {
       res.json().then((data) => {
         localStorage.setItem('token', data.token);
@@ -21,8 +23,12 @@ const api = {
     const body = {
       email, password, firstname, lastname,
     };
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': JSON.stringify(body).length.toString(),
+    };
     fetch(`${baseUrl}/register`, {
-      method: 'POST', headers, body,
+      method: 'POST', headers, body: JSON.stringify(body),
     }).then(() => {
       this.login(email, password, () => {
         completion();
@@ -33,9 +39,12 @@ const api = {
   },
 
   getRequest(url, completion) {
-    fetch(`${baseUrl}${url}`, {
-      headers: headersLogged,
-    }).then((res) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': '0',
+      Authentication: `Bearer ${localStorage.getItem('token')}`,
+    };
+    fetch(`${baseUrl}${url}`, { headers }).then((res) => {
       res.json().then((data) => {
         completion(data);
       });
@@ -46,8 +55,13 @@ const api = {
   },
 
   postOrPutRequest(method, url, body, completion) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': JSON.stringify(body).length.toString(),
+      Authentication: `Bearer ${localStorage.getItem('token')}`,
+    };
     fetch(`${baseUrl}${url}`, {
-      method, headers: headersLogged, body,
+      method, headers, body: JSON.stringify(body),
     }).then(() => {
       completion();
     }).catch((error) => {
@@ -57,8 +71,13 @@ const api = {
   },
 
   deleteRequest(url, completion) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': '0',
+      Authentication: `Bearer ${localStorage.getItem('token')}`,
+    };
     fetch(`${baseUrl}${url}`, {
-      method: 'DELETE', headers: headersLogged,
+      method: 'DELETE', headers,
     }).then(() => {
       completion();
     }).catch((error) => {
