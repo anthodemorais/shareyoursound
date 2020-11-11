@@ -27,6 +27,9 @@ function useRegisterBlock() {
         console.log(localStorage.getItem('token'));
       });
     }
+    else {
+      swal('Error', `All fields are required`, 'error');
+    }
   }
 
   return {

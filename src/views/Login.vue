@@ -23,6 +23,9 @@ function useLoginBlock() {
         console.log(localStorage.getItem('token'));
       });
     }
+    else {
+      swal('Error', `Email or password empty`, 'error');
+    }
   }
 
   return {

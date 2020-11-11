@@ -16,6 +16,7 @@ const api = {
       });
     }).catch((error) => {
       console.log(error.message);
+      swal('Error', 'Failed to log in. Try again...', 'error');
     });
   },
 
@@ -35,6 +36,7 @@ const api = {
       });
     }).catch((error) => {
       console.log(error.message);
+      swal('Error', 'Failed to register. Try again...', 'error');
     });
   },
 
@@ -51,6 +53,7 @@ const api = {
     }).catch((error) => {
       console.log(error.message);
       completion('error');
+      swal('Error', `Failed to get ${url}. Try again...`, 'error');
     });
   },
 
@@ -67,6 +70,7 @@ const api = {
     }).catch((error) => {
       console.log(error.message);
       completion('error');
+      swal('Error', `Failed to submit. Try again...`, 'error');
     });
   },
 
@@ -83,6 +87,7 @@ const api = {
     }).catch((error) => {
       console.log(error.message);
       completion('error');
+      swal('Error', `Failed to delete. Try again...`, 'error');
     });
   },
 

@@ -28,6 +28,9 @@ function useUpdateProfileBlock(props) {
         console.log('updated');
       });
     }
+    else {
+      swal('Error', `All fields are required`, 'error');
+    }
   }
 
   return {
