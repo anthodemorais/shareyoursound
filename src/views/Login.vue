@@ -9,6 +9,7 @@
 
 <script>
 import { ref } from 'vue';
+import swal from 'sweetalert';
 import api from '../api';
 
 function useLoginBlock() {
@@ -22,6 +23,8 @@ function useLoginBlock() {
       api.login(email.value, password.value, () => {
         console.log(localStorage.getItem('token'));
       });
+    } else {
+      swal('Error', 'Email or password empty', 'error');
     }
   }
 

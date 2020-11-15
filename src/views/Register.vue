@@ -11,6 +11,7 @@
 
 <script>
 import { ref } from 'vue';
+import swal from 'sweetalert';
 import api from '../api';
 
 function useRegisterBlock() {
@@ -26,6 +27,8 @@ function useRegisterBlock() {
       api.register(firstname.value, lastname.value, email.value, password.value, () => {
         console.log(localStorage.getItem('token'));
       });
+    } else {
+      swal('Error', 'All fields are required', 'error');
     }
   }
 
