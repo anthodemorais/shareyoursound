@@ -1,3 +1,5 @@
+import swal from 'sweetalert';
+
 const baseUrl = 'https://api.shareyoursound.loscil.fr/api';
 
 const api = {
@@ -70,7 +72,7 @@ const api = {
     }).catch((error) => {
       console.log(error.message);
       completion('error');
-      swal('Error', `Failed to submit. Try again...`, 'error');
+      swal('Error', 'Failed to submit. Try again...', 'error');
     });
   },
 
@@ -87,7 +89,7 @@ const api = {
     }).catch((error) => {
       console.log(error.message);
       completion('error');
-      swal('Error', `Failed to delete. Try again...`, 'error');
+      swal('Error', 'Failed to delete. Try again...', 'error');
     });
   },
 
