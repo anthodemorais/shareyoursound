@@ -10,6 +10,7 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
+import swal from 'sweetalert';
 import api from '../api';
 
 function useUpdateProfileBlock(props) {
@@ -27,9 +28,8 @@ function useUpdateProfileBlock(props) {
       }, () => {
         console.log('updated');
       });
-    }
-    else {
-      swal('Error', `All fields are required`, 'error');
+    } else {
+      swal('Error', 'All fields are required', 'error');
     }
   }
 
