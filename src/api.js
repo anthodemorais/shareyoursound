@@ -12,10 +12,21 @@ const api = {
     fetch(`${baseUrl}/login_check`, {
       method: 'POST', headers, body: JSON.stringify(body),
     }).then((res) => {
-      res.json().then((data) => {
-        localStorage.setItem('token', data.token);
-        completion();
-      });
+      if (res.status === 200) {
+        res.json().then((data) => {
+          localStorage.setItem('token', data.token);
+          completion();
+        });
+      } else if (res.status === 404) {
+        swal('404 Error', 'Wrong URL', 'error');
+        completion('error');
+      } else if (res.status === 403) {
+        swal('Error', 'Bad Request', 'error');
+        completion('error');
+      } else if (res.status === 500) {
+        swal('Error', 'Server Error', 'error');
+        completion('error');
+      }
     }).catch((error) => {
       console.log(error.message);
       swal('Error', 'Failed to log in. Try again...', 'error');
@@ -32,13 +43,24 @@ const api = {
     };
     fetch(`${baseUrl}/register`, {
       method: 'POST', headers, body: JSON.stringify(body),
-    }).then(() => {
-      this.login(email, password, () => {
-        completion();
-      });
+    }).then((res) => {
+      if (res.status === 200) {
+        this.login(email, password, () => {
+          completion();
+        });
+      } else if (res.status === 404) {
+        swal('404 Error', 'Wrong URL', 'error');
+        completion('error');
+      } else if (res.status === 403) {
+        swal('Error', 'Bad Request', 'error');
+        completion('error');
+      } else if (res.status === 500) {
+        swal('Error', 'Server Error', 'error');
+        completion('error');
+      }
     }).catch((error) => {
-      console.log(error.message);
       swal('Error', 'Failed to register. Try again...', 'error');
+      console.log(error.message);
     });
   },
 
@@ -49,14 +71,25 @@ const api = {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     fetch(`${baseUrl}${url}`, { headers }).then((res) => {
-      res.json().then((data) => {
-        completion(data);
-        console.log(data);
-      });
+      if (res.status === 200) {
+        res.json().then((data) => {
+          completion(data);
+          console.log(data);
+        });
+      } else if (res.status === 404) {
+        swal('404 Error', 'Wrong URL', 'error');
+        completion('error');
+      } else if (res.status === 403) {
+        swal('Error', 'Bad Request', 'error');
+        completion('error');
+      } else if (res.status === 500) {
+        swal('Error', 'Server Error', 'error');
+        completion('error');
+      }
     }).catch((error) => {
       console.log(error.message);
-      completion('error');
       swal('Error', `Failed to get ${url}. Try again...`, 'error');
+      completion('error');
     });
   },
 
@@ -68,12 +101,23 @@ const api = {
     };
     fetch(`${baseUrl}${url}`, {
       method, headers, body: JSON.stringify(body),
-    }).then(() => {
-      completion();
+    }).then((res) => {
+      if (res.status === 200) {
+        completion();
+      } else if (res.status === 404) {
+        swal('404 Error', 'Wrong URL', 'error');
+        completion('error');
+      } else if (res.status === 403) {
+        swal('Error', 'Bad Request', 'error');
+        completion('error');
+      } else if (res.status === 500) {
+        swal('Error', 'Server Error', 'error');
+        completion('error');
+      }
     }).catch((error) => {
       console.log(error.message);
-      completion('error');
       swal('Error', 'Failed to submit. Try again...', 'error');
+      completion('error');
     });
   },
 
@@ -85,12 +129,23 @@ const api = {
     };
     fetch(`${baseUrl}${url}`, {
       method: 'DELETE', headers,
-    }).then(() => {
-      completion();
+    }).then((res) => {
+      if (res.status === 200) {
+        completion();
+      } else if (res.status === 404) {
+        swal('404 Error', 'Wrong URL', 'error');
+        completion('error');
+      } else if (res.status === 403) {
+        swal('Error', 'Bad Request', 'error');
+        completion('error');
+      } else if (res.status === 500) {
+        swal('Error', 'Server Error', 'error');
+        completion('error');
+      }
     }).catch((error) => {
       console.log(error.message);
-      completion('error');
       swal('Error', 'Failed to delete. Try again...', 'error');
+      completion('error');
     });
   },
 
