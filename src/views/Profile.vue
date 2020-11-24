@@ -1,14 +1,9 @@
 <template>
-    <h2>Get Me</h2>
-    <div class="text-md-center">
-        <div v-for="post in posts" :key="post.id">
-            <div class="card">
-                <div class="card-body">
-                    <p class="full-name">Utilisateur n° {{ post.id }}</p>
-                    <p class="full-name">{{ post.firstname }}</p>
-                </div>
-            </div>
-        </div>
+  <div>
+    <h2>{{ firstname }} {{ lastname }}</h2>
+    <strong>{{ email }}</strong>
+    <br><br>
+    <img v-bind:src="picture" alt="{{ firstname }} {{ lastname }}" />
   </div>
 </template>
 
@@ -16,7 +11,7 @@
 import { ref } from 'vue';
 import api from '../api';
 
-function getMe() {
+function useMyProfileBlock() {
   const id = ref('');
   const firstname = ref('');
   const lastname = ref('');
@@ -44,10 +39,7 @@ function getMe() {
 }
 export default {
   setup() {
-    return { ...getMe() };
+    return { ...useMyProfileBlock() };
   },
 };
 </script>
-
-<style>
-</style>
