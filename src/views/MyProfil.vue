@@ -1,9 +1,9 @@
 <template>
   <div>
     <h2>{{ firstname }} {{ lastname }}</h2>
-    <!-- <a v-bind:href="url + id">Utilisateur n° {{ id }}</a></p> -->
     <strong>{{ email }}</strong>
-    <img src="{{ picture }}" alt="{{ firstname }} {{ lastname }}" />
+    <br><br>
+    <img v-bind:src="picture" alt="{{ firstname }} {{ lastname }}" />
   </div>
 </template>
 

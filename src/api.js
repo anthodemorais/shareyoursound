@@ -46,7 +46,7 @@ const api = {
     const headers = {
       'Content-Type': 'application/json',
       // 'Content-Length': '0',
-      Authentication: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     fetch(`${baseUrl}${url}`, { headers }).then((res) => {
       res.json().then((data) => {
