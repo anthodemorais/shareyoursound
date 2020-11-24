@@ -45,7 +45,7 @@ const api = {
   getRequest(url, completion) {
     const headers = {
       'Content-Type': 'application/json',
-      // 'Content-Length': '0',
+      'Content-Length': '0',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     fetch(`${baseUrl}${url}`, { headers }).then((res) => {
@@ -64,7 +64,7 @@ const api = {
     const headers = {
       'Content-Type': 'application/json',
       'Content-Length': JSON.stringify(body).length.toString(),
-      Authentication: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     fetch(`${baseUrl}${url}`, {
       method, headers, body: JSON.stringify(body),
@@ -81,7 +81,7 @@ const api = {
     const headers = {
       'Content-Type': 'application/json',
       'Content-Length': '0',
-      Authentication: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     fetch(`${baseUrl}${url}`, {
       method: 'DELETE', headers,
