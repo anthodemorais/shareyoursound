@@ -51,6 +51,7 @@ const api = {
     fetch(`${baseUrl}${url}`, { headers }).then((res) => {
       res.json().then((data) => {
         completion(data);
+        console.log(data);
       });
     }).catch((error) => {
       console.log(error.message);
@@ -90,19 +91,6 @@ const api = {
       console.log(error.message);
       completion('error');
       swal('Error', 'Failed to delete. Try again...', 'error');
-    });
-  },
-
-  getMe() {
-    fetch(`${this.baseUrl}/api/type`, {
-      headers: this.headers,
-    }).then((res) => {
-      res.json().then((response) => {
-        this.posts = response;
-        console.log(response);
-      });
-    }).catch((error) => {
-      console.log(error);
     });
   },
 

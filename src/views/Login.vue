@@ -22,6 +22,7 @@ function useLoginBlock() {
     if (email.value !== '' && password.value !== '') {
       api.login(email.value, password.value, () => {
         console.log(localStorage.getItem('token'));
+        this.$router.push({ path: '/' });
       });
     } else {
       swal('Error', 'Email or password empty', 'error');
