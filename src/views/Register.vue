@@ -1,16 +1,17 @@
 <template>
     <h2>Register</h2>
     <form @submit='onSubmit'>
-        <input type='text' placeholder='Firstname' required :value='firstname' />
-        <input type='text' placeholder='Lastname' required :value='lastname' />
-        <input type='email' placeholder='Email' required :value='email' />
-        <input type='password' placeholder='Password' required :value='password' />
+        <input type='text' placeholder='Firstname' required v-model='firstname' />
+        <input type='text' placeholder='Lastname' required v-model='lastname' />
+        <input type='email' placeholder='Email' required v-model='email' />
+        <input type='password' placeholder='Password' required v-model='password' />
         <input type='submit' />
     </form>
 </template>
 
 <script>
 import { ref } from 'vue';
+import swal from 'sweetalert';
 import api from '../api';
 
 function useRegisterBlock() {
@@ -26,6 +27,8 @@ function useRegisterBlock() {
       api.register(firstname.value, lastname.value, email.value, password.value, () => {
         console.log(localStorage.getItem('token'));
       });
+    } else {
+      swal('Error', 'All fields are required', 'error');
     }
   }
 

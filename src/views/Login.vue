@@ -1,14 +1,15 @@
 <template>
     <h2>Login</h2>
     <form @submit='onSubmit'>
-        <input type='email' placeholder='Email' required @change='updateEmail' />
-        <input type='password' placeholder='Password' required @change='updatePassword' />
+        <input type='email' placeholder='Email' required v-model='email' />
+        <input type='password' placeholder='Password' required v-model='password' />
         <input type='submit' />
     </form>
 </template>
 
 <script>
 import { ref } from 'vue';
+import swal from 'sweetalert';
 import api from '../api';
 
 function useLoginBlock() {
@@ -22,6 +23,8 @@ function useLoginBlock() {
       api.login(email.value, password.value, () => {
         console.log(localStorage.getItem('token'));
       });
+    } else {
+      swal('Error', 'Email or password empty', 'error');
     }
   }
 
