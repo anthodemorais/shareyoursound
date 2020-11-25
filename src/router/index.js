@@ -36,6 +36,11 @@ const routes = [
     name: 'ProfileID',
     component: () => import('../views/ProfileID.vue'),
   },
+  {
+    path: '/profile/follow/:id',
+    name: 'UserFollowsID',
+    component: () => import('../views/UserFollowsID.vue'),
+  },
 ];
 
 const router = createRouter({
