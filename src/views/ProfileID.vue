@@ -3,22 +3,23 @@
     <h2>{{ firstname }} {{ lastname }}</h2>
     <!-- <a v-bind:href="url + id">Utilisateur n° {{ id }}</a></p> -->
     <strong>{{ email }}</strong>
-    <img src="{{ picture }}" alt="{{ firstname }} {{ lastname }}" />
+    <img src="{{ picture }}" v-bind:alt="firstname + lastname " />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useMyProfileBlock() {
+function useProfileIDBlock(userId) {
   const id = ref('');
   const firstname = ref('');
   const lastname = ref('');
   const email = ref('');
   const picture = ref('');
 
-  api.getRequest('/user', (data) => {
+  api.getRequest(`/user/${userId}`, (data) => {
     if (localStorage.getItem('token') === undefined) {
       this.getAccessToken();
     }
@@ -30,6 +31,8 @@ function useMyProfileBlock() {
       lastname.value = data.user.lastname;
       email.value = data.user.email;
       picture.value = data.user.picture;
+    } else {
+      this.$router.push({ path: '/' });
     }
   });
 
@@ -39,7 +42,8 @@ function useMyProfileBlock() {
 }
 export default {
   setup() {
-    return { ...useMyProfileBlock() };
+    const { id } = useRouter().currentRoute.value.params;
+    return { ...useProfileIDBlock(id) };
   },
 };
 </script>

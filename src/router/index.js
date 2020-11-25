@@ -8,6 +8,10 @@ const routes = [
     component: Home,
   },
   {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/About.vue'),
@@ -23,17 +27,12 @@ const routes = [
     component: () => import('../views/Register.vue'),
   },
   {
-    path: '/profil',
+    path: '/profile',
     name: 'Profile',
-    component: () => import('../views/MyProfil.vue'),
+    component: () => import('../views/MyProfile.vue'),
   },
   {
-    path: '/profil/:id(\\d+)',
-    name: 'ProfileId',
-    component: () => import('../views/ProfilId.vue'),
-  },
-  {
-    path: '/profile/:id(\\d+)',
+    path: '/profile/:id',
     name: 'ProfileID',
     component: () => import('../views/ProfileID.vue'),
   },
