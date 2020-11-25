@@ -26,6 +26,7 @@ function useUpdateProfileBlock(props) {
       api.postOrPutRequest('PUT', '/user', {
         firstname, lastname, email, password,
       }, () => {
+        swal('Done!', 'Successfully updated profile !', 'success');
         console.log('updated');
       });
     } else {

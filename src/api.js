@@ -33,7 +33,7 @@ const api = {
     });
   },
 
-  register(email, password, firstname, lastname, completion) {
+  register(firstname, lastname, email, password, completion) {
     const body = {
       email, password, firstname, lastname,
     };

@@ -3,11 +3,15 @@
     <h2>{{ firstname }} {{ lastname }}</h2>
     <!-- <a v-bind:href="url + id">Utilisateur n° {{ id }}</a></p> -->
     <strong>{{ email }}</strong>
+    <br>
     <img src="{{ picture }}" v-bind:alt="firstname + lastname " />
+    <br>
+    <FollowUser :id="id" />
   </div>
 </template>
 
 <script>
+import FollowUser from '@/components/FollowUser.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
@@ -41,6 +45,7 @@ function useProfileIDBlock(userId) {
   };
 }
 export default {
+  components: { FollowUser },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useProfileIDBlock(id) };
