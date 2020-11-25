@@ -44,6 +44,7 @@ function useProfileIDBlock(userId) {
     id, firstname, lastname, email, picture,
   };
 }
+
 export default {
   components: { FollowUser },
   setup() {
