@@ -41,6 +41,11 @@ const routes = [
     name: 'UserFollowsID',
     component: () => import('../views/UserFollowsID.vue'),
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../views/Search.vue'),
+  },
 ];
 
 const router = createRouter({
