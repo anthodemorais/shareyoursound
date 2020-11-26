@@ -9,10 +9,15 @@
       v-bind:email="email"
       v-bind:password="password" />
   </div>
+  <div v-for="post in posts" :key="post.firstnameFollow" >
+    <div>{{ post.firstname}} </div>
+  </div>
+  <MyFollows/>
 </template>
 
 <script>
 import UpdateProfile from '@/components/UpdateProfile.vue';
+import MyFollows from '@/components/MyFollows.vue';
 import { ref } from 'vue';
 import api from '../api';
 
@@ -37,7 +42,7 @@ function useMyProfileBlock() {
   };
 }
 export default {
-  components: { UpdateProfile },
+  components: { UpdateProfile, MyFollows },
   setup() {
     return { ...useMyProfileBlock() };
   },
