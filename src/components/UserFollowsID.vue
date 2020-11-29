@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2>Il/Elle suit: </h2>
         <div v-for="post in posts" :key="post.id" >
             <h2><a v-bind:href="url + post.id">{{ post.firstname}}</a></h2>
             <div>{{ post.lastname}}</div>
