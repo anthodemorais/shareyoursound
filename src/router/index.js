@@ -37,9 +37,9 @@ const routes = [
     component: () => import('../views/ProfileID.vue'),
   },
   {
-    path: '/profile/follow/:id',
-    name: 'UserFollowsID',
-    component: () => import('../views/UserFollowsID.vue'),
+    path: '/users',
+    name: 'AllUsers',
+    component: () => import('../views/AllUsers.vue'),
   },
   {
     path: '/search',
