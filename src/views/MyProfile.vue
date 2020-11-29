@@ -13,11 +13,13 @@
     <div>{{ post.firstname}} </div>
   </div>
   <MyFollows/>
+  <MyFollowers/>
 </template>
 
 <script>
 import UpdateProfile from '@/components/UpdateProfile.vue';
 import MyFollows from '@/components/MyFollows.vue';
+import MyFollowers from '@/components/MyFollowers.vue';
 import { ref } from 'vue';
 import api from '../api';
 
@@ -42,7 +44,7 @@ function useMyProfileBlock() {
   };
 }
 export default {
-  components: { UpdateProfile, MyFollows },
+  components: { UpdateProfile, MyFollows, MyFollowers },
   setup() {
     return { ...useMyProfileBlock() };
   },
