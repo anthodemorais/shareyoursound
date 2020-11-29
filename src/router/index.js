@@ -46,6 +46,16 @@ const routes = [
     name: 'Search',
     component: () => import('../views/Search.vue'),
   },
+  {
+    path: '/music/types',
+    name: 'AllType',
+    component: () => import('../views/AllType.vue'),
+  },
+  {
+    path: '/music/types/:id',
+    name: 'Type',
+    component: () => import('../views/Type.vue'),
+  },
 ];
 
 const router = createRouter({
