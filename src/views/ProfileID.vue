@@ -7,11 +7,15 @@
     <img src="{{ picture }}" v-bind:alt="firstname + lastname " />
     <br>
     <FollowUser :id="id" />
+    <UserFollowers/>
+    <UserFollows/>
   </div>
 </template>
 
 <script>
 import FollowUser from '@/components/FollowUser.vue';
+import UserFollowers from '@/components/UserFollowers.vue';
+import UserFollows from '@/components/UserFollowsID.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
@@ -46,7 +50,7 @@ function useProfileIDBlock(userId) {
 }
 
 export default {
-  components: { FollowUser },
+  components: { FollowUser, UserFollowers, UserFollows },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useProfileIDBlock(id) };

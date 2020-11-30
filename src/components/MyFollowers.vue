@@ -1,10 +1,12 @@
 <template>
     <div>
-        <h2>Je suis follow à: </h2>
+        <h2>Mes followers </h2>
         <div v-for="post in posts" :key="post.id" >
             <h2><a v-bind:href="url + post.id">{{ post.firstname}}</a></h2>
             <div>{{ post.lastname}}</div>
             <div>{{ post.email}}</div>
+            <div>Il suit {{ post.follows }} personne(s) </div>
+            <div>Il a {{ post.followers }} followers </div>
             <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
         </div>
     </div>
@@ -14,13 +16,13 @@
 import { ref, defineComponent } from 'vue';
 import api from '../api';
 
-function useMyFollows() {
+function MyFollowers() {
   const posts = ref([]);
   const url = '/profile/';
 
-  api.getRequest('/user/follow', (data) => {
+  api.getRequest('/user/followers', (data) => {
     if (data !== 'error') {
-      posts.value = data.follows;
+      posts.value = data.followers;
     }
   });
 
@@ -32,7 +34,7 @@ function useMyFollows() {
 }
 export default defineComponent({
   setup() {
-    return { ...useMyFollows() };
+    return { ...MyFollowers() };
   },
 });
 </script>
