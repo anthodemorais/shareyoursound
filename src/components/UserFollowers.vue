@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Je suis follow à: </h2>
+        <h2>Ses followers: </h2>
         <div v-for="post in posts" :key="post.id" >
             <h2><a v-bind:href="url + post.id">{{ post.firstname}}</a></h2>
             <div>{{ post.lastname}}</div>
@@ -12,15 +12,16 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useMyFollows() {
+function UserFollowers(userId) {
   const posts = ref([]);
   const url = '/profile/';
 
-  api.getRequest('/user/follow', (data) => {
+  api.getRequest(`/user/followers/${userId}`, (data) => {
     if (data !== 'error') {
-      posts.value = data.follows;
+      posts.value = data.followers;
     }
   });
 
@@ -32,7 +33,8 @@ function useMyFollows() {
 }
 export default defineComponent({
   setup() {
-    return { ...useMyFollows() };
+    const { id } = useRouter().currentRoute.value.params;
+    return { ...UserFollowers(id) };
   },
 });
 </script>

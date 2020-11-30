@@ -37,11 +37,6 @@ const routes = [
     component: () => import('../views/ProfileID.vue'),
   },
   {
-    path: '/profile/follow/:id',
-    name: 'UserFollowsID',
-    component: () => import('../views/UserFollowsID.vue'),
-  },
-  {
     path: '/search',
     name: 'Search',
     component: () => import('../views/Search.vue'),
