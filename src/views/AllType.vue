@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Tous les types de Musiques</h1>
+        <AddType />
         <div v-for="post in posts" :key="post.id" >
             <h2><a v-bind:href="url + post.id">{{ post.name}}</a></h2>
             <hr/>
@@ -10,6 +11,7 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
+import AddType from '@/components/AddType.vue';
 import api from '../api';
 
 function AllUsers() {
@@ -29,6 +31,7 @@ function AllUsers() {
   };
 }
 export default defineComponent({
+  components: { AddType },
   setup() {
     return { ...AllUsers() };
   },
