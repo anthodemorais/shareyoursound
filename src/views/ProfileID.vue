@@ -1,26 +1,26 @@
 <template>
   <div>
+    <img src="{{ picture }}" v-bind:alt="firstname + lastname " />
     <h2>{{ firstname }} {{ lastname }}</h2>
-    <!-- <a v-bind:href="url + id">Utilisateur n° {{ id }}</a></p> -->
     <strong>{{ email }}</strong>
     <br>
-    <img src="{{ picture }}" v-bind:alt="firstname + lastname " />
-    <br>
     <FollowUser :id="id" />
-    <UserFollowers/>
-    <UserFollows/>
+    <div class="flex">
+      <a v-bind:href="urlFollows + id">Ses follows</a>
+      <a v-bind:href="urlFollowers + id">Ses followers</a>
+    </div>
   </div>
 </template>
 
 <script>
 import FollowUser from '@/components/FollowUser.vue';
-import UserFollowers from '@/components/UserFollowers.vue';
-import UserFollows from '@/components/UserFollowsID.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
 function useProfileIDBlock(userId) {
+  const urlFollows = '/profile/follows/';
+  const urlFollowers = '/profile/followers/';
   const id = ref('');
   const firstname = ref('');
   const lastname = ref('');
@@ -40,15 +40,22 @@ function useProfileIDBlock(userId) {
   });
 
   return {
-    id, firstname, lastname, email, picture,
+    urlFollows, urlFollowers, id, firstname, lastname, email, picture,
   };
 }
 
 export default {
-  components: { FollowUser, UserFollowers, UserFollows },
+  components: { FollowUser },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useProfileIDBlock(id) };
   },
 };
 </script>
+
+<style>
+.flex {
+  display:flex;
+  justify-content: space-around;
+}
+</style>
