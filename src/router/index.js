@@ -56,6 +56,11 @@ const routes = [
     name: 'Type',
     component: () => import('../views/Type.vue'),
   },
+  {
+    path: '/media/type/:id',
+    name: 'MusicByType',
+    component: () => import('../views/MusicByType.vue'),
+  },
 ];
 
 const router = createRouter({

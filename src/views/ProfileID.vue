@@ -28,11 +28,6 @@ function useProfileIDBlock(userId) {
   const picture = ref('');
 
   api.getRequest(`/user/${userId}`, (data) => {
-    if (localStorage.getItem('token') === undefined) {
-      this.getAccessToken();
-    }
-
-    console.log(localStorage.getItem('token'));
     if (data !== 'error') {
       id.value = data.user.id;
       firstname.value = data.user.firstname;
