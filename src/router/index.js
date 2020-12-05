@@ -56,6 +56,16 @@ const routes = [
     name: 'Type',
     component: () => import('../views/Type.vue'),
   },
+  {
+    path: '/media',
+    name: 'Media',
+    component: () => import('../views/Media.vue'),
+  },
+  {
+    path: '/media/:id',
+    name: 'MediaID',
+    component: () => import('../views/MediaID.vue'),
+  },
 ];
 
 const router = createRouter({
