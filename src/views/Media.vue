@@ -2,7 +2,6 @@
     <div>
         <h1>Toutes les musiques :</h1>
         <div v-for="media in medias" :key="media.id" >
-            <!-- <h2><a v-bind:href="url + media.id">{{ media.firstname}}</a></h2> -->
             <h2>
                 <a v-bind:href="url + media.id">
                     {{ media.name}}
