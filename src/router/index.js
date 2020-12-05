@@ -67,6 +67,16 @@ const routes = [
     component: () => import('../views/Type.vue'),
   },
   {
+    path: '/media',
+    name: 'Media',
+    component: () => import('../views/Media.vue'),
+  },
+  {
+    path: '/media/:id',
+    name: 'MediaID',
+    component: () => import('../views/MediaID.vue'),
+  },
+  {
     path: '/media/type/:id',
     name: 'MusicByType',
     component: () => import('../views/MusicByType.vue'),
