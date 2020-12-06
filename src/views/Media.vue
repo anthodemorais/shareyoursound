@@ -1,21 +1,23 @@
 <template>
     <div>
-        <h1>Toutes les musiques :</h1>
-        <div v-for="media in medias" :key="media.id" >
-            <h2>
-                <a v-bind:href="url + media.id">
-                    {{ media.name}}
-                </a>
-            </h2>
-            <audio controls="controls">
-                <source v-bind:src="media.file" type="audio/mp3" />
-            </audio>
-        </div>
+      <AddMedia/>
+      <h1>Toutes les musiques :</h1>
+      <div v-for="media in medias" :key="media.id" >
+          <h2>
+              <a v-bind:href="url + media.id">
+                  {{ media.name}}
+              </a>
+          </h2>
+          <audio controls="controls">
+              <source v-bind:src="media.file" type="audio/mp3" />
+          </audio>
+      </div>
     </div>
 </template>
 
 <script>
 import { ref, defineComponent } from 'vue';
+import AddMedia from '@/components/AddMedia.vue';
 import api from '../api';
 
 function allMedia() {
@@ -35,6 +37,7 @@ function allMedia() {
   };
 }
 export default defineComponent({
+  components: { AddMedia },
   setup() {
     return { ...allMedia() };
   },
