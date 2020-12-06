@@ -10,6 +10,7 @@
             <audio controls="controls">
                 <source v-bind:src="media.file" type="audio/mp3" />
             </audio>
+            <br>
         </div>
     </div>
 </template>
