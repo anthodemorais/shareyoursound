@@ -16,6 +16,7 @@
         <div v-for="type in types" :key="type.id" >
             <h3>{{type.name}}</h3>
         </div>
+        <AddTypeToMedia v-bind:media="id" />
         <h2>Ceux qui aiment cette musique: </h2>
         <div v-for="liker in likers" :key="liker.id" >
             <span>
@@ -30,6 +31,7 @@
 <script>
 import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import AddTypeToMedia from '@/components/AddTypeToMedia.vue';
 import api from '../api';
 
 function useMediaID(id) {
@@ -47,10 +49,11 @@ function useMediaID(id) {
   });
 
   return {
-    url, medium, likers, types,
+    url, medium, likers, types, id,
   };
 }
 export default defineComponent({
+  components: { AddTypeToMedia },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useMediaID(id) };
