@@ -1,5 +1,7 @@
 <template>
     <h1>{{ medium.name }}</h1>
+    <LikeMedia :id="medium.id"/>
+    <UnlikeMedia :id="medium.id"/>
     <audio controls="controls">
         <source v-bind:src="medium.file" type="audio/mp3" />
     </audio>
@@ -30,6 +32,8 @@
 <script>
 import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import LikeMedia from '@/components/LikeMedia.vue';
+import UnlikeMedia from '@/components/UnlikeMedia.vue';
 import AddTypeToMedia from '@/components/AddTypeToMedia.vue';
 import RemoveTypeToMedia from '@/components/RemoveTypeToMedia.vue';
 import api from '../api';
@@ -65,7 +69,7 @@ function useMediaID(mediaId) {
   };
 }
 export default defineComponent({
-  components: { AddTypeToMedia, RemoveTypeToMedia },
+  components: { AddTypeToMedia, RemoveTypeToMedia, LikeMedia, UnlikeMedia },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useMediaID(id) };
