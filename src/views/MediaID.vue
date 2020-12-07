@@ -14,6 +14,7 @@
     <h2>Son/Ses genres : </h2>
     <div v-for="type in types" :key="type.id" >
         <h3>{{type.name}}</h3>
+        <RemoveTypeToMedia :media="mediaId" :type="type.id" />
     </div>
     <AddTypeToMedia :media="mediaId" />
     <h2>Ceux qui aiment cette musique: </h2>
@@ -30,6 +31,7 @@
 import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import AddTypeToMedia from '@/components/AddTypeToMedia.vue';
+import RemoveTypeToMedia from '@/components/RemoveTypeToMedia.vue';
 import api from '../api';
 
 function useMediaID(mediaId) {
@@ -63,7 +65,7 @@ function useMediaID(mediaId) {
   };
 }
 export default defineComponent({
-  components: { AddTypeToMedia },
+  components: { AddTypeToMedia, RemoveTypeToMedia },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useMediaID(id) };
