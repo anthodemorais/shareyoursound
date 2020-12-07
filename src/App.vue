@@ -1,7 +1,13 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/profile">Mon profile</router-link> |
+    <router-link to="/users">Tout les users</router-link> |
+    <router-link to="/music/types">Musiques</router-link> |
+    <router-link to="/media">Media</router-link> |
+    <router-link to="/search">Search</router-link> |
+    <router-link to="/register">Register</router-link> |
+    <router-link to="/login">Login</router-link>
   </div>
   <router-view/>
 </template>
