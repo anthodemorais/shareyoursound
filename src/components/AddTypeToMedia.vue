@@ -1,7 +1,7 @@
 <template>
     <form @submit="onSubmit">
         <strong>Ajouter un type au média</strong>
-        <select>
+        <select v-model="selectedType" >
             <option v-for="type in types" v-bind:key="type.id" v-bind:value="type.id">
                 {{ type.name }}
             </option>
@@ -12,16 +12,15 @@
 
 <script>
 import swal from 'sweetalert';
-import { defineAsyncComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import api from '../api';
 
 function useAddTypeBlock(props) {
   const types = ref([]);
   const selectedType = ref(0);
 
-  api.getRequest('/types', (data) => {
+  api.getRequest('/type', (data) => {
     if (data !== 'error') {
-      console.log('AAAAAA');
       types.value = data.types;
     }
   });
@@ -41,7 +40,7 @@ function useAddTypeBlock(props) {
   return { types, selectedType, onSubmit };
 }
 
-export default defineAsyncComponent({
+export default defineComponent({
   props: {
     media: Number,
   },

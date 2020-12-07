@@ -16,7 +16,7 @@
         <div v-for="type in types" :key="type.id" >
             <h3>{{type.name}}</h3>
         </div>
-        <AddTypeToMedia v-bind:media="id" />
+        <AddTypeToMedia :media="id" />
         <h2>Ceux qui aiment cette musique: </h2>
         <div v-for="liker in likers" :key="liker.id" >
             <span>
