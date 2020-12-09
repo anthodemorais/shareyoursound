@@ -2,7 +2,7 @@
   <form @submit='onSubmit'>
     <strong>Ajouter un nouveau type de musique : </strong>
     <input type='text' placeholder='Name' required v-model='name' />
-    <input type='text' placeholder='File' required v-model='file' />
+    <input type="file" required ref="file" />
     <input type='submit' value='Ajouter' />
   </form>
 </template>
