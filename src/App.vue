@@ -4,6 +4,7 @@
     <router-link to="/profile">Mon profile</router-link> |
     <router-link to="/users">Tout les users</router-link> |
     <router-link to="/music/types">Musiques</router-link> |
+    <router-link to="/liked">Préférées</router-link> |
     <router-link to="/media">Media</router-link> |
     <router-link to="/search">Search</router-link> |
     <router-link to="/register">Register</router-link> |

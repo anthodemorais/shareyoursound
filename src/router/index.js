@@ -81,6 +81,12 @@ const routes = [
     name: 'MusicByType',
     component: () => import('../views/MusicByType.vue'),
   },
+  {
+    path: '/liked',
+    name: 'LikedMedia',
+    component: () => import('../views/LikedMedia.vue'),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
