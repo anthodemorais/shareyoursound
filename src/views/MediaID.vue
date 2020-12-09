@@ -1,10 +1,10 @@
 <template>
     <h1>{{ medium.name }}</h1>
-    <LikeMedia :id="medium.id"/>
-    <UnlikeMedia :id="medium.id"/>
     <audio controls="controls">
         <source v-bind:src="medium.file" type="audio/mp3" />
-    </audio>
+    </audio><br><br>
+    <LikeMedia :id="medium.id"/>
+    <UnlikeMedia :id="medium.id"/><br><br>
     <div>Crée par :</div>
 
     <img v-bind:src="picture" />
@@ -69,7 +69,9 @@ function useMediaID(mediaId) {
   };
 }
 export default defineComponent({
-  components: { AddTypeToMedia, RemoveTypeToMedia, LikeMedia, UnlikeMedia },
+  components: {
+    AddTypeToMedia, RemoveTypeToMedia, LikeMedia, UnlikeMedia,
+  },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useMediaID(id) };
