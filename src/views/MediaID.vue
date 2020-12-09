@@ -14,9 +14,9 @@
     <h2>Son/Ses genres : </h2>
     <div v-for="type in types" :key="type.id" >
         <h3>{{type.name}}</h3>
-        <RemoveTypeToMedia :media="mediaId" :type="type.id" />
+        <RemoveTypeToMedia :media="mediaId" :type="type.id" :reloadMedia="reloadMedia" />
     </div>
-    <AddTypeToMedia :media="mediaId" />
+    <AddTypeToMedia :media="mediaId" :reloadMedia="reloadMedia" />
     <h2>Ceux qui aiment cette musique: </h2>
     <div v-for="liker in likers" :key="liker.id" >
         <span>
@@ -69,8 +69,38 @@ function useMediaID(router, mediaId) {
     store.commit('readMedia', mediaUrl);
   }
 
+  function reloadMedia() {
+    api.getRequest(`/media/${mediaId}`, (data) => {
+      if (data !== 'error') {
+        name.value = data.medium.name;
+        file.value = data.medium.file;
+        id.value = data.medium.author.id;
+        picture.value = data.medium.author.picture;
+        firstname.value = data.medium.author.firstname;
+        lastname.value = data.medium.author.lastname;
+        medium.value = data.medium;
+        likers.value = data.medium.likers;
+        types.value = data.medium.types;
+      } else {
+        router.push({ path: '/' });
+      }
+    });
+  }
+
   return {
-    name, file, picture, firstname, lastname, url, medium, likers, types, id, mediaId, onMediaPress,
+    name,
+    file,
+    picture,
+    firstname,
+    lastname,
+    url,
+    medium,
+    likers,
+    types,
+    id,
+    mediaId,
+    onMediaPress,
+    reloadMedia,
   };
 }
 export default defineComponent({
