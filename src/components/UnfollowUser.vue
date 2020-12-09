@@ -1,5 +1,5 @@
 <template>
-  <button @click="onButtonPress">Unlike</button>
+  <button @click="onButtonPress">Unfollow</button>
 </template>
 
 <script>
@@ -7,13 +7,13 @@ import { defineComponent } from 'vue';
 import swal from 'sweetalert';
 import api from '../api';
 
-function useUnlikeMediaBlock(props) {
+function useUnfollowUserBlock(props) {
   function onButtonPress() {
-    api.deleteRequest(`/media/like/${props.id}`, (data) => {
+    api.deleteRequest(`/user/follow/${props.id}`, (data) => {
       if (data !== 'error') {
-        swal('Done!', 'Unliked media, refresh the page to see the changes !', 'success');
+        swal('Done!', 'Unfollowed user !', 'success');
       } else {
-        swal('Error', 'Unable to unlike media. Try again...', 'error');
+        swal('Error', 'Unable to unfollow user. Try again...', 'error');
       }
     });
   }
@@ -26,7 +26,7 @@ export default defineComponent({
     id: Number,
   },
   setup(props) {
-    return { ...useUnlikeMediaBlock(props) };
+    return { ...useUnfollowUserBlock(props) };
   },
 });
 </script>
