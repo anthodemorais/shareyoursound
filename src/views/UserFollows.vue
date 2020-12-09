@@ -3,7 +3,9 @@
         <h2>Il/Elle suit: </h2>
         <div v-for="post in posts" :key="post.id" >
             <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
-            <h2><a v-bind:href="url + post.id">{{ post.firstname}} {{ post.lastname}}</a></h2>
+            <h2>
+              <router-link :to="url + post.id">{{ post.firstname}} {{ post.lastname}}</router-link>
+            </h2>
         </div>
     </div>
 </template>
@@ -13,13 +15,15 @@ import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useUserFollows(userId) {
+function useUserFollows(router, userId) {
   const posts = ref([]);
   const url = '/profile/';
 
   api.getRequest(`/user/follow/${userId}`, (data) => {
     if (data !== 'error') {
       posts.value = data.follows;
+    } else {
+      router.push({ path: '/' });
     }
   });
 
@@ -32,7 +36,7 @@ function useUserFollows(userId) {
 export default defineComponent({
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useUserFollows(id) };
+    return { ...useUserFollows(useRouter(), id) };
   },
 });
 </script>

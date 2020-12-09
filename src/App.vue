@@ -12,22 +12,20 @@
     </div>
   </div>
   <router-view/>
+  <MediaPlayer />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import MediaPlayer from '@/components/MediaPlayer.vue';
 
-function local() {
-  const header = localStorage.getItem('token');
-  return {
-    header,
-  };
-}
-export default defineComponent({
+export default {
+  components: { MediaPlayer },
   setup() {
-    return { ...local() };
+    const header = localStorage.getItem('token');
+    return { header };
   },
-});
+};
 </script>
 
 <style lang="scss">

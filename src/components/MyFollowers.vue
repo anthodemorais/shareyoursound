@@ -2,7 +2,7 @@
     <div>
         <h2>Mes followers </h2>
         <div v-for="post in posts" :key="post.id" >
-            <h2><a v-bind:href="url + post.id">{{ post.firstname}}</a></h2>
+            <h2><router-link :to="url + post.id">{{ post.firstname}}</router-link></h2>
             <div>{{ post.lastname}}</div>
             <div>{{ post.email}}</div>
             <div>Il suit {{ post.follows }} personne(s) </div>

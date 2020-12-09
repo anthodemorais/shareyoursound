@@ -2,7 +2,7 @@
     <div>
         <h2>Je suis follow à: </h2>
         <div v-for="post in posts" :key="post.id" >
-            <h2><a v-bind:href="url + post.id">{{ post.firstname}}</a></h2>
+            <h2><router-link :to="url + post.id">{{ post.firstname}}</router-link></h2>
             <div>{{ post.lastname}}</div>
             <div>{{ post.email}}</div>
             <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
