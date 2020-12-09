@@ -21,7 +21,7 @@ import FollowType from '@/components/FollowType.vue';
 import UnfollowType from '@/components/UnfollowType.vue';
 import api from '../api';
 
-function useTypeBlock(id) {
+function useTypeBlock(router, id) {
   const posts = ref([]);
   const followers = ref([]);
 
@@ -29,6 +29,8 @@ function useTypeBlock(id) {
     if (data !== 'error') {
       posts.value = data.types;
       followers.value = data.types.followers;
+    } else {
+      router.push({ path: '/' });
     }
   });
 
@@ -40,7 +42,7 @@ export default defineComponent({
   components: { FollowType, UnfollowType },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useTypeBlock(id) };
+    return { ...useTypeBlock(useRouter(), id) };
   },
 });
 </script>

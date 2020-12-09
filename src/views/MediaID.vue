@@ -37,7 +37,7 @@ import RemoveTypeToMedia from '@/components/RemoveTypeToMedia.vue';
 import store from '../store';
 import api from '../api';
 
-function useMediaID(mediaId) {
+function useMediaID(router, mediaId) {
   const url = '/profile/';
   const medium = ref([]);
   const likers = ref([]);
@@ -60,6 +60,8 @@ function useMediaID(mediaId) {
       medium.value = data.medium;
       likers.value = data.medium.likers;
       types.value = data.medium.types;
+    } else {
+      router.push({ path: '/' });
     }
   });
 
@@ -77,7 +79,7 @@ export default defineComponent({
   },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useMediaID(id) };
+    return { ...useMediaID(useRouter(), id) };
   },
 });
 </script>

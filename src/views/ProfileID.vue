@@ -18,7 +18,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useProfileIDBlock(userId) {
+function useProfileIDBlock(router, userId) {
   const urlFollows = '/profile/follows/';
   const urlFollowers = '/profile/followers/';
   const id = ref('');
@@ -35,7 +35,7 @@ function useProfileIDBlock(userId) {
       email.value = data.user.email;
       picture.value = data.user.picture;
     } else {
-      this.$router.push({ path: '/' });
+      router.push({ path: '/' });
     }
   });
 
@@ -48,7 +48,7 @@ export default {
   components: { FollowUser },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useProfileIDBlock(id) };
+    return { ...useProfileIDBlock(useRouter(), id) };
   },
 };
 </script>

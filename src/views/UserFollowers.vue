@@ -16,17 +16,17 @@ import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
-function UserFollowers(userId) {
+function UserFollowers(router, userId) {
   const posts = ref([]);
   const url = '/profile/';
 
   api.getRequest(`/user/followers/${userId}`, (data) => {
     if (data !== 'error') {
       posts.value = data.followers;
+    } else {
+      router.push({ path: '/' });
     }
   });
-
-  console.log(posts);
 
   return {
     posts, url,
@@ -35,7 +35,7 @@ function UserFollowers(userId) {
 export default defineComponent({
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...UserFollowers(id) };
+    return { ...UserFollowers(useRouter(), id) };
   },
 });
 </script>

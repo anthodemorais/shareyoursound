@@ -15,13 +15,15 @@ import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useUserFollows(userId) {
+function useUserFollows(router, userId) {
   const posts = ref([]);
   const url = '/profile/';
 
   api.getRequest(`/user/follow/${userId}`, (data) => {
     if (data !== 'error') {
       posts.value = data.follows;
+    } else {
+      router.push({ path: '/' });
     }
   });
 
@@ -34,7 +36,7 @@ function useUserFollows(userId) {
 export default defineComponent({
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useUserFollows(id) };
+    return { ...useUserFollows(useRouter(), id) };
   },
 });
 </script>
