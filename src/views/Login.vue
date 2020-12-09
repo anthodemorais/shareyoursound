@@ -9,13 +9,17 @@
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import swal from 'sweetalert';
 import api from '../api';
 
-function useLoginBlock() {
+function useLoginBlock(router) {
   const email = ref('');
   const password = ref('');
 
+  if (localStorage.getItem('token') !== '') {
+    router.push({ path: '/' });
+  }
   function onSubmit(e) {
     e.preventDefault();
 
@@ -35,7 +39,7 @@ function useLoginBlock() {
 }
 export default {
   setup() {
-    return { ...useLoginBlock() };
+    return { ...useLoginBlock(useRouter()) };
   },
 };
 </script>

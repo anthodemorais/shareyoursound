@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
 import MediaPlayer from '@/components/MediaPlayer.vue';
 
 export default {
