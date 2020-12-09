@@ -6,8 +6,8 @@
     <br>
     <FollowUser :id="id" />
     <div class="flex">
-      <a v-bind:href="urlFollows + id">Ses follows</a>
-      <a v-bind:href="urlFollowers + id">Ses followers</a>
+      <router-link :to="urlFollows + id">Ses follows</router-link>
+      <router-link :to="urlFollowers + id">Ses followers</router-link>
     </div>
   </div>
 </template>

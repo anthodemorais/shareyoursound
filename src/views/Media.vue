@@ -4,13 +4,11 @@
       <h1>Toutes les musiques :</h1>
       <div v-for="media in medias" :key="media.id" >
           <h2>
-              <a v-bind:href="url + media.id">
+              <router-link :to="url + media.id">
                   {{ media.name}}
-              </a>
+              </router-link>
           </h2>
-          <audio controls="controls">
-              <source v-bind:src="media.file" type="audio/mp3" />
-          </audio>
+          <button @click="() => onMediaPress(media.file)">Play Media</button>
       </div>
     </div>
 </template>
@@ -18,6 +16,7 @@
 <script>
 import { ref, defineComponent } from 'vue';
 import AddMedia from '@/components/AddMedia.vue';
+import store from '../store';
 import api from '../api';
 
 function allMedia() {
@@ -30,10 +29,12 @@ function allMedia() {
     }
   });
 
-  console.log(medias);
+  function onMediaPress(mediaUrl) {
+    store.commit('readMedia', mediaUrl);
+  }
 
   return {
-    medias, url,
+    medias, url, onMediaPress,
   };
 }
 export default defineComponent({

@@ -10,7 +10,19 @@
     <router-link to="/login">Login</router-link>
   </div>
   <router-view/>
+  <MediaPlayer />
 </template>
+
+<script>
+import MediaPlayer from '@/components/MediaPlayer.vue';
+
+export default {
+  components: { MediaPlayer },
+  setup() {
+    return {};
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

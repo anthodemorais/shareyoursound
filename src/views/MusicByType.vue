@@ -5,9 +5,9 @@
       Votre navigateur ne supporte pas l'élément audio.
     </audio>
     <p>
-      By <a v-bind:href="'/profile/' + media.author.id ">
+      By <router-link v-bind:to="'/profile/' + media.author.id ">
             {{ media.author.firstname }} {{ media.author.lastname }}
-        </a>
+        </router-link>
     </p>
   </div>
   <strong v-if="medias.length === 0">Aucune musique pour ce type</strong>

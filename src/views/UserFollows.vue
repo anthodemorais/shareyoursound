@@ -3,7 +3,9 @@
         <h2>Il/Elle suit: </h2>
         <div v-for="post in posts" :key="post.id" >
             <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
-            <h2><a v-bind:href="url + post.id">{{ post.firstname}} {{ post.lastname}}</a></h2>
+            <h2>
+              <router-link :to="url + post.id">{{ post.firstname}} {{ post.lastname}}</router-link>
+            </h2>
         </div>
     </div>
 </template>
