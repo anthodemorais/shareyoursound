@@ -69,7 +69,9 @@ function useMediaID(mediaId) {
   };
 }
 export default defineComponent({
-  components: { AddTypeToMedia, RemoveTypeToMedia, LikeMedia, UnlikeMedia },
+  components: {
+    AddTypeToMedia, RemoveTypeToMedia, LikeMedia, UnlikeMedia,
+  },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useMediaID(id) };
