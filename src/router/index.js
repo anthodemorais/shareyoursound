@@ -32,11 +32,6 @@ const routes = [
     component: () => import('../views/MyProfile.vue'),
   },
   {
-    path: '/profile/:id',
-    name: 'ProfileID',
-    component: () => import('../views/ProfileID.vue'),
-  },
-  {
     path: '/profile/follows/:id',
     name: 'UserFollows',
     component: () => import('../views/UserFollows.vue'),
@@ -45,6 +40,11 @@ const routes = [
     path: '/profile/followers/:id',
     name: 'UserFollowers',
     component: () => import('../views/UserFollowers.vue'),
+  },
+  {
+    path: '/profile/:id',
+    name: 'ProfileID',
+    component: () => import('../views/ProfileID.vue'),
   },
   {
     path: '/users',

@@ -5,6 +5,7 @@
     <strong>{{ email }}</strong>
     <br>
     <FollowUser :id="id" />
+    <UnfollowUser :id="id" />
     <div class="flex">
       <router-link :to="urlFollows + id">Ses follows</router-link>
       <router-link :to="urlFollowers + id">Ses followers</router-link>
@@ -14,6 +15,7 @@
 
 <script>
 import FollowUser from '@/components/FollowUser.vue';
+import UnfollowUser from '@/components/UnfollowUser.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
@@ -45,7 +47,7 @@ function useProfileIDBlock(router, userId) {
 }
 
 export default {
-  components: { FollowUser },
+  components: { FollowUser, UnfollowUser },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
     return { ...useProfileIDBlock(useRouter(), id) };
