@@ -82,9 +82,15 @@ const routes = [
     component: () => import('../views/MusicByType.vue'),
   },
   {
-    path: '/liked',
+    path: '/liked/media',
     name: 'LikedMedia',
     component: () => import('../views/LikedMedia.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/liked/type',
+    name: 'LikedTypes',
+    component: () => import('../views/LikedTypes.vue'),
     meta: { requiresAuth: true },
   },
 ];

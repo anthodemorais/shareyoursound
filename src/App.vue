@@ -4,7 +4,8 @@
     <router-link to="/profile">Mon profile</router-link> |
     <router-link to="/users">Tout les users</router-link> |
     <router-link to="/music/types">Musiques</router-link> |
-    <router-link to="/liked">Préférées</router-link> |
+    <router-link to="/liked/media">Musiques Préférées</router-link> |
+    <router-link to="/liked/type">Types Préférés</router-link> |
     <router-link to="/media">Media</router-link> |
     <router-link to="/search">Search</router-link>
     <div v-if="!header" > |
@@ -17,7 +18,6 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
 import MediaPlayer from '@/components/MediaPlayer.vue';
 
 export default {
