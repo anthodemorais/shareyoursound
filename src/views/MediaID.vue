@@ -1,30 +1,28 @@
 <template>
-    <h1>{{ medium.name }}</h1>
-    <audio controls="controls">
-        <source v-bind:src="medium.file" type="audio/mp3" />
-    </audio><br><br>
-    <LikeMedia :id="medium.id"/>
-    <UnlikeMedia :id="medium.id"/><br><br>
+    <h1>{{ name }}</h1>
+    <LikeMedia :id="id"/>
+    <UnlikeMedia :id="id"/>
+    <button @click="() => onMediaPress(file)">Play Media</button>
     <div>Crée par :</div>
 
     <img v-bind:src="picture" />
     <div>
-        <a v-bind:href="url + id">
+        <router-link v-bind:to="url + id">
             {{ firstname }} {{ lastname }}
-        </a>
+        </router-link>
     </div>
     <h2>Son/Ses genres : </h2>
     <div v-for="type in types" :key="type.id" >
         <h3>{{type.name}}</h3>
-        <RemoveTypeToMedia :media="mediaId" :type="type.id" />
+        <RemoveTypeToMedia :media="mediaId" :type="type.id" :reloadMedia="reloadMedia" />
     </div>
-    <AddTypeToMedia :media="mediaId" />
+    <AddTypeToMedia :media="mediaId" :reloadMedia="reloadMedia" />
     <h2>Ceux qui aiment cette musique: </h2>
     <div v-for="liker in likers" :key="liker.id" >
         <span>
-            <a v-bind:href="url + liker.id">
+            <router-link v-bind:to="url + liker.id">
                 {{ liker.firstname }} {{ liker.lastname }}
-            </a>
+            </router-link>
         </span>
     </div>
 </template>
@@ -36,9 +34,10 @@ import LikeMedia from '@/components/LikeMedia.vue';
 import UnlikeMedia from '@/components/UnlikeMedia.vue';
 import AddTypeToMedia from '@/components/AddTypeToMedia.vue';
 import RemoveTypeToMedia from '@/components/RemoveTypeToMedia.vue';
+import store from '../store';
 import api from '../api';
 
-function useMediaID(mediaId) {
+function useMediaID(router, mediaId) {
   const url = '/profile/';
   const medium = ref([]);
   const likers = ref([]);
@@ -61,11 +60,47 @@ function useMediaID(mediaId) {
       medium.value = data.medium;
       likers.value = data.medium.likers;
       types.value = data.medium.types;
+    } else {
+      router.push({ path: '/' });
     }
   });
 
+  function onMediaPress(mediaUrl) {
+    store.commit('readMedia', mediaUrl);
+  }
+
+  function reloadMedia() {
+    api.getRequest(`/media/${mediaId}`, (data) => {
+      if (data !== 'error') {
+        name.value = data.medium.name;
+        file.value = data.medium.file;
+        id.value = data.medium.author.id;
+        picture.value = data.medium.author.picture;
+        firstname.value = data.medium.author.firstname;
+        lastname.value = data.medium.author.lastname;
+        medium.value = data.medium;
+        likers.value = data.medium.likers;
+        types.value = data.medium.types;
+      } else {
+        router.push({ path: '/' });
+      }
+    });
+  }
+
   return {
-    name, file, picture, firstname, lastname, url, medium, likers, types, id, mediaId,
+    name,
+    file,
+    picture,
+    firstname,
+    lastname,
+    url,
+    medium,
+    likers,
+    types,
+    id,
+    mediaId,
+    onMediaPress,
+    reloadMedia,
   };
 }
 export default defineComponent({
@@ -74,7 +109,7 @@ export default defineComponent({
   },
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useMediaID(id) };
+    return { ...useMediaID(useRouter(), id) };
   },
 });
 </script>

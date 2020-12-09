@@ -5,12 +5,28 @@
     <router-link to="/users">Tout les users</router-link> |
     <router-link to="/music/types">Musiques</router-link> |
     <router-link to="/media">Media</router-link> |
-    <router-link to="/search">Search</router-link> |
-    <router-link to="/register">Register</router-link> |
-    <router-link to="/login">Login</router-link>
+    <router-link to="/search">Search</router-link>
+    <div v-if="!header" > |
+      <router-link to="/register">Register</router-link> |
+      <router-link to="/login">Login</router-link>
+    </div>
   </div>
   <router-view/>
+  <MediaPlayer />
 </template>
+
+<script>
+import { defineComponent } from 'vue';
+import MediaPlayer from '@/components/MediaPlayer.vue';
+
+export default {
+  components: { MediaPlayer },
+  setup() {
+    const header = localStorage.getItem('token');
+    return { header };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

@@ -32,6 +32,7 @@ function useAddTypeBlock(props) {
       api.postOrPutRequest('POST', `/media/${props.media}/type/${selectedType.value}`, {}, (data) => {
         if (data !== 'error') {
           swal('C\'est fait!', 'Le type a été ajouté au media !', 'success');
+          props.reloadMedia();
         }
       });
     }
@@ -43,6 +44,7 @@ function useAddTypeBlock(props) {
 export default defineComponent({
   props: {
     media: Number,
+    reloadMedia: Function,
   },
   setup(props) {
     return { ...useAddTypeBlock(props) };

@@ -5,9 +5,9 @@
       Votre navigateur ne supporte pas l'élément audio.
     </audio>
     <p>
-      By <a v-bind:href="'/profile/' + media.author.id ">
+      By <router-link v-bind:to="'/profile/' + media.author.id ">
             {{ media.author.firstname }} {{ media.author.lastname }}
-        </a>
+        </router-link>
     </p>
   </div>
   <strong v-if="medias.length === 0">Aucune musique pour ce type</strong>
@@ -18,7 +18,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../api';
 
-function useMusicByTypeBlock(typeId) {
+function useMusicByTypeBlock(router, typeId) {
   const medias = ref([]);
   const type = ref('');
 
@@ -27,7 +27,7 @@ function useMusicByTypeBlock(typeId) {
       medias.value = data.media;
       type.value = data.type.name;
     } else {
-      this.$router.push({ path: '/' });
+      router.push({ path: '/' });
     }
   });
 
@@ -37,7 +37,7 @@ function useMusicByTypeBlock(typeId) {
 export default {
   setup() {
     const { id } = useRouter().currentRoute.value.params;
-    return { ...useMusicByTypeBlock(id) };
+    return { ...useMusicByTypeBlock(useRouter(), id) };
   },
 };
 </script>

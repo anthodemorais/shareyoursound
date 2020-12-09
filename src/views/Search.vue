@@ -7,16 +7,16 @@
   <div v-bind:style="displayUsers">
     <h3>Utilisateurs</h3>
     <div v-for="user in users" :key="user.id">
-      <a v-bind:href="'/profile/' + user.id">
+      <router-link :to="'/profile/' + user.id">
         {{ user.firstname }} {{ user.lastname }} {{ user.email }}
-      </a>
+      </router-link>
     </div>
   </div>
   <div v-bind:style="displayMedia">
     <h3>Médias</h3>
-    <a v-for="media in medias" :key="media.id" v-bind:href="'/media/' + media.id">
+    <router-link v-for="media in medias" :key="media.id" :to="'/media/' + media.id">
         {{ media.name }}
-    </a>
+    </router-link>
   </div>
   <h3 v-bind:style="noResult">Aucun Résultat</h3>
 </template>
