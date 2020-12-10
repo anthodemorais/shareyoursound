@@ -1,5 +1,5 @@
 <template>
-  <button @click="onButtonPress">Follow</button>
+  <button @click="onButtonPress" class="btn btn-primary">Follow</button>
 </template>
 
 <script>
@@ -31,6 +31,8 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
+<style scoped>
+button {
+  margin: 10px;
+}
 </style>

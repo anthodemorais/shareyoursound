@@ -1,12 +1,12 @@
 <template>
     <form @submit="onSubmit">
         <strong>Ajouter un type au média</strong>
-        <select v-model="selectedType" >
+        <select class="form-select mb-3" v-model="selectedType" >
             <option v-for="type in types" v-bind:key="type.id" v-bind:value="type.id">
                 {{ type.name }}
             </option>
         </select>
-        <input type="submit" value="Ajouter le type" />
+        <button type="submit" class="btn btn-primary">Ajouter le type</button>
     </form>
 </template>
 

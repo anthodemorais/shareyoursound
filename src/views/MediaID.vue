@@ -2,28 +2,33 @@
     <h1>{{ name }}</h1>
     <LikeMedia :id="id"/>
     <UnlikeMedia :id="id"/>
-    <button @click="() => onMediaPress(file)">Play Media</button>
-    <div>Crée par :</div>
-
-    <img v-bind:src="picture" />
-    <div>
+    <button class="btn btn-success" @click="() => onMediaPress(file)">Play Media</button>
+    <div class="row">
+      <div class="col">
+        <h2>Crée par :</h2>
+        <img v-bind:src="picture" />
         <router-link v-bind:to="url + id">
             {{ firstname }} {{ lastname }}
         </router-link>
-    </div>
-    <h2>Son/Ses genres : </h2>
-    <div v-for="type in types" :key="type.id" >
-        <h3>{{type.name}}</h3>
-        <RemoveTypeToMedia :media="mediaId" :type="type.id" :reloadMedia="reloadMedia" />
-    </div>
-    <AddTypeToMedia :media="mediaId" :reloadMedia="reloadMedia" />
-    <h2>Ceux qui aiment cette musique: </h2>
-    <div v-for="liker in likers" :key="liker.id" >
-        <span>
-            <router-link v-bind:to="url + liker.id">
-                {{ liker.firstname }} {{ liker.lastname }}
-            </router-link>
-        </span>
+      </div>
+      <div class="col">
+        <h2>Son/Ses genres : </h2>
+        <div v-for="type in types" :key="type.id" >
+            <h3>{{type.name}}</h3>
+            <RemoveTypeToMedia :media="mediaId" :type="type.id" :reloadMedia="reloadMedia" />
+        </div>
+        <AddTypeToMedia :media="mediaId" :reloadMedia="reloadMedia" />
+      </div>
+      <div class="col">
+        <h2>Ceux qui aiment cette musique: </h2>
+        <ul>
+          <li v-for="liker in likers" :key="liker.id">
+              <router-link v-bind:to="url + liker.id">
+                  {{ liker.firstname }} {{ liker.lastname }}
+              </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
 </template>
 
@@ -113,3 +118,17 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.btn {
+  margin: 10px;
+}
+
+.col {
+  width: 30%;
+}
+
+ul {
+  list-style-type: none;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <button @click="onButtonPress">Like</button>
+  <button class="btn btn-primary" @click="onButtonPress">Like</button>
 </template>
 
 <script>

@@ -1,14 +1,18 @@
 <template>
     <div>
       <h1>Vos musiques préférées :</h1>
-      <div v-for="media in medias" :key="media.id" >
-          <h2>
-              <router-link :to="url + media.id">
-                  {{ media.name}}
-              </router-link>
-          </h2>
-          <strong>Par : {{ media.author.firstname }} {{ media.author.lastname }}</strong>
-          <button @click="() => onMediaPress(media.file)">Play Media</button>
+      <div class="list">
+        <div v-for="media in medias" :key="media.id" class="card" style="width: 18rem;">
+            <h2>
+                <router-link :to="url + media.id">
+                    {{ media.name}}
+                </router-link>
+            </h2>
+            <strong>Par : {{ media.author.firstname }} {{ media.author.lastname }}</strong>
+            <button @click="() => onMediaPress(media.file)" class="btn btn-success">
+              Play Media
+            </button>
+        </div>
       </div>
     </div>
 </template>
@@ -42,3 +46,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px;
+  padding: 10px;
+}
+</style>

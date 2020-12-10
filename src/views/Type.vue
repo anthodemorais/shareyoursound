@@ -3,13 +3,16 @@
         <FollowType :id="posts.id" />
         <UnfollowType :id="posts.id" />
         <h1>{{posts.name}} est suivit par:</h1>
-        <div v-for="follower in followers" :key="follower.id" >
-            <h2>{{ follower.firstname }} {{ follower.lastname }}</h2>
-            <div>{{ follower.email}}</div>
-            <div>Il/Elle suit {{ follower.follows }} personne(s) </div>
-            <div>Il/Elle est suivie par {{ follower.followers }} followers </div>
-            <img v-bind:src="follower.picture" v-bind:alt="follower.firstname + follower.lastname"/>
-            <hr/>
+        <div class="list">
+          <div v-for="follower in followers" :key="follower.id" class="card" style="width: 18rem;">
+            <img v-bind:src="follower.picture"
+                   v-bind:alt="follower.firstname + follower.lastname"
+                   class="card-img-top"/>
+              <h2 class="card-title">{{ follower.firstname }} {{ follower.lastname }}</h2>
+              <div>{{ follower.email}}</div>
+              <div>Il/Elle suit {{ follower.follows }} personne(s) </div>
+              <div>Il/Elle est suivie par {{ follower.followers }} followers </div>
+          </div>
         </div>
     </div>
 </template>
@@ -46,3 +49,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 10px;
+}
+</style>

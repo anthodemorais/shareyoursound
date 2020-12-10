@@ -1,9 +1,10 @@
 <template>
     <div>
         <h1>Vos types de musique préférés</h1>
-        <div v-for="post in posts" :key="post.id" >
-            <h2><router-link :to="url + post.id">{{ post.name }}</router-link></h2>
-            <hr/>
+        <div class="list">
+          <div v-for="post in posts" :key="post.id" class="card">
+              <strong><router-link :to="url + post.id">{{ post.name }}</router-link></strong>
+          </div>
         </div>
     </div>
 </template>
@@ -32,3 +33,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card {
+  margin: 5px;
+  padding: 5px;
+}
+</style>

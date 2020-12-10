@@ -1,5 +1,5 @@
 <template>
-    <button @click="onRemovePress">Supprimer le type</button>
+    <button class="btn btn-danger" @click="onRemovePress">Supprimer le type</button>
 </template>
 
 <script>

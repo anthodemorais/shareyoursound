@@ -1,5 +1,5 @@
 <template>
-  <button @click="onButtonPress">Unfollow</button>
+  <button @click="onButtonPress" class="btn btn-primary">Unfollow</button>
 </template>
 
 <script>

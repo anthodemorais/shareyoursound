@@ -1,14 +1,18 @@
 <template>
-    <div>
+    <div class="container">
       <AddMedia/>
       <h1>Toutes les musiques :</h1>
-      <div v-for="media in medias" :key="media.id" >
-          <h2>
-              <router-link :to="url + media.id">
-                  {{ media.name}}
-              </router-link>
-          </h2>
-          <button @click="() => onMediaPress(media.file)">Play Media</button>
+      <div class="list">
+        <div v-for="media in medias" :key="media.id"
+            class="card" style="width: 18rem; height: 150px;">
+            <h2 class="card-title">
+                <router-link :to="url + media.id">
+                    {{ media.name}}
+                </router-link>
+            </h2>
+            <button class="btn btn-success"
+                    @click="() => onMediaPress(media.file)">Play Media</button>
+        </div>
       </div>
     </div>
 </template>
@@ -44,3 +48,21 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px;
+}
+</style>

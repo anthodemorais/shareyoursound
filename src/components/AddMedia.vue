@@ -1,9 +1,11 @@
 <template>
   <form @submit='onSubmit'>
-    <strong>Ajouter un nouveau type de musique : </strong>
-    <input type='text' placeholder='Name' required v-model='name' />
-    <input type="file" required ref="file" />
-    <input type='submit' value='Ajouter' />
+    <strong class="mb-3">Ajouter une musique : </strong>
+    <div class="row">
+      <input type='text' class="col form-control mb-4" placeholder='Name' required v-model='name' />
+      <input type="file" required ref="file" class="col mb-3" />
+    </div>
+    <button type='submit' class="btn btn-primary">Ajouter</button>
   </form>
 </template>
 
@@ -42,5 +44,10 @@ export default defineComponent({
 </script>
 
 <style>
-
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
