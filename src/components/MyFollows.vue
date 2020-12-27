@@ -2,10 +2,15 @@
     <div>
         <h2>Je suis follow à: </h2>
         <div v-for="post in posts" :key="post.id" >
-            <h2><router-link :to="url + post.id">{{ post.firstname}}</router-link></h2>
-            <div>{{ post.lastname}}</div>
-            <div>{{ post.email}}</div>
-            <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
+            <div class="card" style="width: 18rem;">
+                <img v-bind:src="post.picture" v-bind:alt="post.firstname + post.lastname " />
+                <h2>
+                  <router-link :to="url + post.id">
+                    {{ post.firstname}} {{ post.lastname}}
+                  </router-link>
+                </h2>
+                <div>{{ post.email}}</div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,3 +41,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+img {
+  height: 150px;
+}
+
+.card {
+  margin: auto;
+  margin-top: 7%;
+}
+</style>

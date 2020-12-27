@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="card" style="width: 18rem;">
+    <img v-bind:src="picture" v-bind:alt="firstname + lastname " />
     <h2>{{ firstname }} {{ lastname }}</h2>
     <strong>{{ email }}</strong>
-    <img v-bind:src="picture" v-bind:alt="firstname + lastname " />
-    <UpdateProfile
-      v-bind:firstname="firstname"
-      v-bind:lastname="lastname"
-      v-bind:email="email"
-      v-bind:password="password" />
   </div>
   <div v-for="post in posts" :key="post.firstnameFollow" >
     <div>{{ post.firstname}} </div>
   </div>
+  <UpdateProfile
+    v-bind:firstname="firstname"
+    v-bind:lastname="lastname"
+    v-bind:email="email"
+    v-bind:password="password" />
   <MyFollows/>
   <MyFollowers/>
 </template>
@@ -52,5 +52,12 @@ export default {
 </script>
 
 <style>
+img {
+  height: 150px;
+}
 
+.card {
+  margin: auto;
+  margin-top: 7%;
+}
 </style>

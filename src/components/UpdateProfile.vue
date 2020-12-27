@@ -1,9 +1,24 @@
 <template>
   <form @submit='onSubmit'>
-    <input type='text' placeholder='Firstname' required v-model='firstname' />
-    <input type='text' placeholder='Lastname' required v-model='lastname' />
-    <input type='email' placeholder='Email' required v-model='email' />
-    <input type='password' placeholder='Password' required v-model='password' />
+    <h2>Modification de ton profil</h2>
+    <div class="form-group">
+      <label for="inputFirstname">Firstname</label>
+      <input type="text" class="form-control" placeholder="Firstname" required v-model='firstname'>
+    </div>
+    <div class="form-group">
+      <label for="inputLastname">Lastname</label>
+      <input type="text" class="form-control" placeholder="Lastname" required v-model='lastname'>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="email" class="form-control" placeholder="Email" required v-model='email'>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" placeholder="Password"
+        required v-model='password'
+      >
+    </div>
     <input type='submit' />
   </form>
 </template>
@@ -53,5 +68,7 @@ export default defineComponent({
 </script>
 
 <style>
-
+h2 {
+  margin-top: 2%;
+}
 </style>
